@@ -22,10 +22,21 @@ const App = () => {
     setnum(prev => ({...prev, age: 22}))
   }
 
+  const submitHandler = (e) => {
+    e.preventDefault()
+    console.log("Name Submitted...");
+    
+  }
+
   return (
     <div>
-      <h2>{num.user}, {num.age}</h2>
-      <button onClick={changeNum}>Click here</button>
+      {/* <h2>{num.user}, {num.age}</h2>
+      <button onClick={changeNum}>Click here</button> */}
+
+      <form onSubmit={(e)=>{submitHandler(e)}}>
+        <input type="text" placeholder='Enter your name: ' />
+      <button>Enter</button>
+      </form>
     </div>
   )
 }
