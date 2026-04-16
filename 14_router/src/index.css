@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
+   color: white;
 }
 
 html,
@@ -18,4 +19,23 @@ h1{
   transform: translate(-50%, -50%);
   font-size: 50px;
   text-decoration: underline;
+}
+
+body{
+  background-color: black;
+}
+
+.nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(73, 73, 194);
+  padding: 20px 40px;
+}
+
+.nav div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
 }
