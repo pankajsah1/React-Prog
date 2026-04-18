@@ -10,14 +10,18 @@ import Women from './pages/Women'
 import Men from './pages/Men'
 import Product from './pages/Product'
 import Kids from './pages/Kids'
+import ContactDetail from './pages/ContactDetail'
+import Nav2 from './components/Nav2'
 const App = () => {
   return (
     <div>
       <Navbar />
+      <Nav2 />
      <Routes>
       <Route path = '/' element ={<Home/>}/>
       <Route path = '/about' element ={<About/>}/>
       <Route path = '/contact' element ={<Contact/>}/>
+      <Route path = '/contact/:id' element ={<ContactDetail/>}/>
 
       <Route path = '/product' element ={<Product/>}>
       <Route path = 'men' element ={<Men/>}/>
