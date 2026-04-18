@@ -109,12 +109,12 @@ console.log(jobs.tag2);
 
 const App = () => {
   return (
-    <div className='parent'>
+    <div className='parent' >
     {    jobs.map(function(elem , idx){
        return <Card key = {idx} company = {elem.company} datePosted = {elem.datePosted} post = {elem.post} tag1 = {elem.tag1} tag2 = {elem.tag2} pay = {elem.pay} location = {elem.location} brandLogo ={elem.brandLogo}/>
 })}
     </div>
   )
 }
-
+     
 export default App

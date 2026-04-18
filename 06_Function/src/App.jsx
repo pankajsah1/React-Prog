@@ -12,7 +12,6 @@ const App = () => {
   const pageScrolling = (e) => {
     if(e>0) console.log("sidha scrolling...");
     else console.log("ulata scrolling....")
-    
   }
 
   return (

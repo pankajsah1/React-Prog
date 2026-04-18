@@ -8,7 +8,7 @@ const HeroText = () => {
                  Ea eum rerum dignissimos
                  ipsam harum sapiente cupiditate perspiciatis laboriosam culpa in.</p>
         </div>
-  )
+  ) 
 }
 
 export default HeroText
