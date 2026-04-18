@@ -13,16 +13,34 @@ body{
   background-color: rgb(33, 30, 30);
 }
 
-.nav{
+/* .nav{
   display: flex;
   background-color: rgb(86, 136, 119);
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-}
+} */
 
-.nav2{
+/* .nav2{
   display: flex;
   justify-content: space-between;
   gap: 30px;
+} */
+
+.light{
+  background-color: rgb(115, 218, 115);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+   gap: 30px;
 }
+
+.dark{
+  background-color: rgb(15, 60, 15);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  gap: 30px;
+}
+
