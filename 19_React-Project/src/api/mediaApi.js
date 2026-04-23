@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const UNSPLASH_KEY = import.meta.env.VITE_UNSPLASH_KEY
 const PEXELS_KEY = import.meta.env.VITE_PEXELS_KEY
-const TENOR_KEY = import.meta.env.VITE_TENOR_KEY
+const GIPHY_KEY = import.meta.env.VITE_GIPHY_KEY
 
 export async function fetchPhoto(query, page=1, per_page = 20){
    const response = await axios.get('https://api.unsplash.com/search/photos',{
@@ -20,10 +20,12 @@ export async function fetchVideo(query, per_page=20) {
    return response.data
 }
 
-export async function fetchGIF(query,per_page=20) {
-  const response = await axios.get('https://api.giphy.com/v1/gifs/translate',{
-    params:{query, per_page},
-    headers:{Authorization: TENOR_KEY}
-   })
+export async function fetchGIF(query) {
+  const response = await axios.get("https://api.giphy.com/v1/gifs/search",{
+    params: {
+       api_key: GIPHY_KEY,
+        q: query,
+        limit: 20
+   }})
    return response.data
 }
