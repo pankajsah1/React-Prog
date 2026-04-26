@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { store } from '../Redux/store'
 
 
-const ResultGrid = () => {
+const ResultGrid = () => {   
     const dispatch = useDispatch()
     const {query, activeTab, results, loading, error} =  useSelector((store)=> store.search)
 
@@ -14,8 +14,14 @@ const ResultGrid = () => {
         let data;
         if(activeTab == 'photos'){
             let response = await fetchPhoto(query)
-            data = response.results
-        }
+            data = response.results.map((item)=>({
+                id: item.id,
+                type: 'photo',
+                title:item.alt_description,
+                thumbnail:item.urls.small,
+                src:item.urls.full
+            }))
+        } 
         if(activeTab == 'videos'){
             let response = await fetchVideo(query)
             data = response.videos
@@ -27,7 +33,7 @@ const ResultGrid = () => {
         console.log(data)
     }
         getData()
-    },[query, activeTab,])
+    },[query, activeTab])
     
   return (
     <div>
