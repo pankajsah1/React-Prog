@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { fetchPhoto, fetchVideo, fetchGIF } from '../api/mediaApi'
-import { setQuery, setLoading, setError, setResults } from '../Redux/Features/searchSlice'
+import { setLoading, setError, setResults } from '../Redux/Features/searchSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { store } from '../Redux/store'
 
@@ -10,8 +10,11 @@ const ResultGrid = () => {
     const {query, activeTab, results, loading, error} =  useSelector((store)=> store.search)
 
     useEffect(function(){
+        if(!query) return
         const getData = async() => {
-        let data;
+        try {
+            dispatch(setLoading())
+             let data = [];
         if(activeTab == 'photos'){
             let response = await fetchPhoto(query)
             data = response.results.map((item)=>({
@@ -24,20 +27,41 @@ const ResultGrid = () => {
         } 
         if(activeTab == 'videos'){
             let response = await fetchVideo(query)
-            data = response.videos
+            data = response.videos.map((item)=>({
+                 id: item.id,
+                 type: 'video',
+                 title: item.user.name  || 'video',
+                 thumbnail: item.image,
+                 src: item.video_files[0].link
+            }))
         }
         if(activeTab == 'gif'){
             let response = await fetchGIF(query)
-            data = response.data
+           data = response.data.map((item)=>({
+                id: item.id,
+                type: 'gif',
+                title: item.title,
+                thumbnail:item.url,
+                src: item.url
+            })) 
         }
-        console.log(data)
+         dispatch(setResults(data))
+        } catch (error) {
+            dispatch(setError(error.message))
+        }
     }
         getData()
     },[query, activeTab])
+
+    if(error) return <h1> Error</h1>
+    if(loading) return <h1> Loading....</h1>
+
     
   return (
     <div>
-        {/* <button onClick={getData}>Get Data</button> */}
+        {results.map((item, idx)=>{
+            return <div key = {idx}>{ item.title}</div>
+        })}
     </div>
   )
 }
