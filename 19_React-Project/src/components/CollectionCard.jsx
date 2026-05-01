@@ -1,15 +1,15 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { addCollection, addedToast } from '../Redux/Features/collectionSlice'
+import { removeCollection, removeToast } from '../Redux/Features/collectionSlice'
 
-const ResultCard = ({item}) => {
+const CollectionCard = ({item}) => {
 
-  const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-  const addToCollection = (item) => {
-    dispatch(addCollection(item))
-    dispatch(addedToast())
-  }
+    const removeFromCollection = (item)=>{
+         dispatch(removeCollection(item.id))
+         dispatch(removeToast())
+    }
   return (
     <div className='w-[17vw] relative h-70 bg-white rounded-xl overflow-hidden'>
         <a target='_blank' className='h-full' href={item.url}>
@@ -21,12 +21,13 @@ const ResultCard = ({item}) => {
             <h2 className='text-l h-12 overflow-hidden font-semibold capitalize'>{item.title}</h2>
             <button
             onClick={()=>{
-              addToCollection(item)
+              removeFromCollection(item)
+              
             }}
-             className='bg-green-600 rounded active:scale-95 text-white px-3 py-1 cursor-pointer font-medium'>Save</button>
+             className='bg-green-600 rounded active:scale-95 text-white px-3 py-1 cursor-pointer font-medium'>Remove</button>
         </div>
     </div>
   )
 }
 
-export default ResultCard
+export default CollectionCard
